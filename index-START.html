@@ -59,18 +59,27 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  // Assing each key with the datakey values
   const dataKeys = {"A":65, "S":83, "D":68, 'F':70, 'G':71, 'H':72, 'J':74, 'K':75, 'L':76};
+
+  // get the objects and keys
   const keys = Object.entries(dataKeys).map(([key,code]) => {
+    //listen for keyboard presses
     document.addEventListener('keydown', (e)=> {
+      //get the div so as to change the styles
       const div = document.querySelector(`div[data-key="${code}"]`);
+      //get the individual sound by thet data-key
       const sound = document.querySelector(`audio[data-key="${code}"]`);
+      //check and compare the pressed keys
       if(e.key.toUpperCase() === key) {
+        //change the styles
         div.style.border = ".4rem solid orange"
         div.classList.add("pop")
         setTimeout(()=>{
           div.style.border = ".4rem solid black"
           div.classList.remove("pop")
         }, 500)
+        //play the audio
         sound.play();
       }
 
